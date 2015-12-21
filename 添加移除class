@@ -1,0 +1,30 @@
+//前台调用
+var $ = function () {
+	return new Base();
+}
+
+//基础库
+function Base() {
+	//创建一个数组，来保存获取的节点和节点数组
+	this.elements = [];
+}
+
+//添加Class
+Base.prototype.addClass = function (className) {
+	for (var i = 0; i < this.elements.length; i ++) {
+		if (!this.elements[i].className.match(new RegExp('(\\s|^)' +className +'(\\s|$)'))) {//不重复添加
+			this.elements[i].className += ' ' + className;
+		}
+	}
+	return this;
+}
+
+//移除Class
+Base.prototype.removeClass = function (className) {
+	for (var i = 0; i < this.elements.length; i ++) {
+		if (this.elements[i].className.match(new RegExp('(\\s|^)' +className +'(\\s|$)'))) {
+			this.elements[i].className = this.elements[i].className.replace(new RegExp('(\\s|^)' +className +'(\\s|$)'), ' ');
+		}
+	}
+	return this;
+}
