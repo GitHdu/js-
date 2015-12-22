@@ -1,0 +1,55 @@
+//前台调用
+var $ = function (_this) {
+	return new Base(_this);
+}
+
+//基础库
+function Base(_this) {
+	//创建一个数组，来保存获取的节点和节点数组
+	this.elements = [];
+	if (_this != undefined) {    //_this是一个对象，undefined也是一个对象，区别与typeof返回的带单引号的'undefined'
+		this.elements[0] = _this;
+	}
+}
+
+//设置鼠标移入移出方法
+Base.prototype.hover = function (over, out) {//over和out都是函数
+	for (var i = 0; i < this.elements.length; i ++) {
+		this.elements[i].onmouseover = over;
+		this.elements[i].onmouseout = out;
+	}
+	return this;
+};
+
+//设置显示
+Base.prototype.show = function () {
+	for (var i = 0; i < this.elements.length; i ++) {
+		this.elements[i].style.display = 'block';
+	}
+	return this;
+}
+
+//设置隐藏
+Base.prototype.hide = function () {
+	for (var i = 0; i < this.elements.length; i ++) {
+		this.elements[i].style.display = 'none';
+	}
+	return this;
+}
+
+//设置物体居中
+Base.prototype.center = function (width, height) {
+	var top = (document.documentElement.clientHeight - height) / 2;
+	var left = (document.documentElement.clientWidth - width) / 2;
+	for (var i = 0; i < this.elements.length; i ++) {
+		this.elements[i].style.top = top + 'px';
+		this.elements[i].style.left = left + 'px';
+	}
+	return this;
+}
+
+//触发浏览器窗口事件
+Base.prototype.resize = function (fn) {
+	window.onresize = fn;
+	return this;
+}
