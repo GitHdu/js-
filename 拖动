@@ -1,0 +1,28 @@
+//获取Event对象
+function getEvent(event) {
+	return event || window.event;//window.event为了兼容IE
+}
+
+//拖拽功能
+Base.prototype.drag = function () {
+	for (var i = 0; i < this.elements.length; i ++) {
+		this.elements[i].onmousedown = function (e) {
+			var e = getEvent(e);
+			var _this = this;
+			var diffX = e.clientX - _this.offsetLeft;
+			var diffY = e.clientY - _this.offsetTop;
+			
+			document.onmousemove = function (e) {
+				var e = getEvent(e);
+				_this.style.left = e.clientX - diffX + 'px';
+				_this.style.top = e.clientY - diffY + 'px';
+			} 
+			document.onmouseup = function () {
+				this.onmousemove = null;
+				this.onmouseup = null;
+			}
+		};
+	}
+	return this;
+}
+
