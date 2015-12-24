@@ -1,0 +1,9 @@
+//阻止默认行为
+function preDef(event) {
+	var e = event || window.event;
+	if (typeof e.preventDefault != 'undefined') {//W3C
+		e.preventDefault();
+	} else {//IE
+		e.returnValue = false;
+	}
+}
