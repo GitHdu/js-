@@ -1,0 +1,8 @@
+/*		
+		//实现累加，并且清晰的指出是专给addEvent用的
+		//JS一切皆为对象，所以addEvent.ID语法正确，实际上是个全局变量
+		alert(addEvent.ID);
+		addEvent.ID++;
+		
+		
+*/
